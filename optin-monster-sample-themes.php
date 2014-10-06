@@ -42,25 +42,25 @@ function om_sample_plugin_init() {
 	 * new footer themes.
 	 */
 	add_filter( 'optin_monster_footer_themes', 'om_sample_add_footer_theme' );
-	
+
 	/**
 	 * The 'optin_monster_slide_themes' filter allows for the addition of
 	 * new slide themes.
 	 */
 	add_filter( 'optin_monster_slide_themes', 'om_sample_add_slide_theme' );
-	
+
 	/**
 	 * The 'optin_monster_after_post_themes' filter allows for the addition of
 	 * new after-post themes.
 	 */
 	add_filter( 'optin_monster_after_post_themes', 'om_sample_add_after_post_theme' );
-	
+
 	/**
 	 * The 'optin_monster_sidebar_themes' filter allows for the addition of
 	 * new sidebar themes.
 	 */
 	add_filter( 'optin_monster_sidebar_themes', 'om_sample_add_sidebar_theme' );
-	
+
 	/**
 	 * The 'optin_monster_mobile_themes' filter allows for the addition of
 	 * new mobile themes.
@@ -81,8 +81,9 @@ function om_sample_plugin_init() {
  * Make sure to add themes to the existing $themes array or they will
  * not be available.
  *
- * @param array $themes The existing lightbox themes
- * @param string $type The requested optin type
+ * @param array  $themes The existing lightbox themes
+ * @param string $type   The requested optin type
+ *
  * @return array
  */
 function om_sample_add_lightbox_theme( $themes, $type ) {
@@ -100,9 +101,9 @@ function om_sample_add_lightbox_theme( $themes, $type ) {
 	 * 3. Reference to this file
 	 */
 	$themes['sample'] = array(
-		'name' => __( 'Sample Theme', 'optin-monster-sample-themes' ),
+		'name'  => __( 'Sample Theme', 'optin-monster-sample-themes' ),
 		'image' => plugins_url( 'includes/themes/lightbox-sample/images/icon.jpg', __FILE__ ),
-		'file' => __FILE__,
+		'file'  => __FILE__,
 	);
 
 	// As with all filters, make sure to return the data.
@@ -114,14 +115,15 @@ function om_sample_add_lightbox_theme( $themes, $type ) {
  * Filters the footer bar optin themes.
  *
  * @param array $themes The existing footer bar themes
+ *
  * @return array
  */
 function om_sample_add_footer_theme( $themes ) {
 
 	$themes['sample'] = array(
-		'name' => __( 'Sample Theme', 'optin-monster-sample-themes' ),
+		'name'  => __( 'Sample Theme', 'optin-monster-sample-themes' ),
 		'image' => plugins_url( 'includes/themes/footer-sample/images/icon.jpg', __FILE__ ),
-		'file' => __FILE__,
+		'file'  => __FILE__,
 	);
 
 	return $themes;
@@ -132,14 +134,15 @@ function om_sample_add_footer_theme( $themes ) {
  * Filters the slide-in optin themes.
  *
  * @param array $themes The existing slide-in themes
+ *
  * @return array
  */
 function om_sample_add_slide_theme( $themes ) {
 
 	$themes['sample'] = array(
-		'name' => __( 'Sample Theme', 'optin-monster-sample-themes' ),
+		'name'  => __( 'Sample Theme', 'optin-monster-sample-themes' ),
 		'image' => plugins_url( 'includes/themes/slide-sample/images/icon.jpg', __FILE__ ),
-		'file' => __FILE__,
+		'file'  => __FILE__,
 	);
 
 	return $themes;
@@ -150,14 +153,15 @@ function om_sample_add_slide_theme( $themes ) {
  * Filters the after-post optin themes.
  *
  * @param array $themes The existing after-post themes
+ *
  * @return array
  */
 function om_sample_add_after_post_theme( $themes ) {
 
 	$themes['sample'] = array(
-		'name' => __( 'Sample Theme', 'optin-monster-sample-themes' ),
+		'name'  => __( 'Sample Theme', 'optin-monster-sample-themes' ),
 		'image' => plugins_url( 'includes/themes/post-sample/images/icon.jpg', __FILE__ ),
-		'file' => __FILE__,
+		'file'  => __FILE__,
 	);
 
 	return $themes;
@@ -168,14 +172,15 @@ function om_sample_add_after_post_theme( $themes ) {
  * Filters the sidebar optin themes.
  *
  * @param array $themes The existing sidebar themes
+ *
  * @return array
  */
 function om_sample_add_sidebar_theme( $themes ) {
 
 	$themes['sample'] = array(
-		'name' => __( 'Sample Theme', 'optin-monster-sample-themes' ),
+		'name'  => __( 'Sample Theme', 'optin-monster-sample-themes' ),
 		'image' => plugins_url( 'includes/themes/sidebar-sample/images/icon.jpg', __FILE__ ),
-		'file' => __FILE__,
+		'file'  => __FILE__,
 	);
 
 	return $themes;
@@ -186,20 +191,31 @@ function om_sample_add_sidebar_theme( $themes ) {
  * Filters the mobile optin themes.
  *
  * @param array $themes The existing mobile themes
+ *
  * @return array
  */
 function om_sample_add_mobile_theme( $themes ) {
 
 	$themes['sample'] = array(
-		'name' => __( 'Sample Theme', 'optin-monster-sample-themes' ),
+		'name'  => __( 'Sample Theme', 'optin-monster-sample-themes' ),
 		'image' => plugins_url( 'includes/themes/mobile-sample/images/icon.jpg', __FILE__ ),
-		'file' => __FILE__,
+		'file'  => __FILE__,
 	);
 
 	return $themes;
 
 }
 
+/**
+ * Create the proper theme API instance
+ *
+ * @param Optin_Monster_Theme $api      The current theme API instance
+ * @param string              $theme    The current theme slug
+ * @param int                 $optin_id The current optin ID
+ * @param string              $type     The current optin type
+ *
+ * @return mixed
+ */
 function om_sample_theme_api( $api, $theme, $optin_id, $type ) {
 
 	// Return if we're not using the Sample theme
@@ -208,7 +224,7 @@ function om_sample_theme_api( $api, $theme, $optin_id, $type ) {
 	}
 
 	switch ( $type ) {
-		
+
 		case 'lightbox' :
 			if ( ! class_exists( 'Optin_Monster_Lightbox_Theme_Sample' ) ) {
 				require plugin_dir_path( __FILE__ ) . 'includes/themes/lightbox-sample/lightbox-sample.php';
